@@ -6,10 +6,17 @@ const app = express()
 
 app.use(cors());
 
-app.listen(3000, (req, res) => {
-  const msg = "servidor rodando";
-  console.log(msg);
-});
+
+const iniciaServidor  = (porta) => {
+
+  app.listen(porta, (req, res) => {
+    const msg = "servidor rodando";
+    console.log(msg);
+  });
+
+}
+
+iniciaServidor(5000);
 
 const products = [
   {
@@ -28,7 +35,7 @@ const products = [
     name: "fone de ouvido",
     brand: "reachShopping",
     description:
-      "Ouça suas músicas com a tecnologia double beat, que te proporciona uma som de cinema",
+      "Ouça suas músicas com a tecnologia double beat, que te proporciona um som de cinema",
     photo:
       "https://www.philips.com.br/c-dam/b2c/category-pages/sound-and-vision/headphones/master/homepage/hero-product-taph805.png",
     price: "130.00",
@@ -98,3 +105,5 @@ const products = [
 app.get("/", (req, res) => {
   res.send(products);
 });
+
+
