@@ -5,16 +5,18 @@ const app = express()
 
 
 app.use(cors());
+app.use(express.json());
 
 
-const iniciaServidor  = (porta) => {
-
-  app.listen(porta, (req, res) => {
-    const msg = "servidor rodando";
-    console.log(msg);
-  });
-
-}
+const iniciaServidor = async (porta) => {
+  try {
+    app.listen(porta, () => {
+      console.log(`Servidor rodando na porta ${porta}`);
+    });
+  } catch (error) {
+    console.error("Erro ao iniciar o servidor:", error);
+  }
+};
 
 iniciaServidor(5000);
 
@@ -102,8 +104,10 @@ const products = [
   },
 ];
 
-app.get("/", (req, res) => {
-  res.send(products);
-});
+
+app.get("/", (req,res) => {
+
+res.send(products);
 
 
+})
