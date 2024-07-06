@@ -33,7 +33,7 @@ const products = [
   {
     id: 2,
     name: "fone de ouvido",
-    brand: "reachShopping",
+    brand: "reactShopping",
     description:
       "Ouça suas músicas com a tecnologia double beat, que te proporciona um som de cinema",
     photo:
