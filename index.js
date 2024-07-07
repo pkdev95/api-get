@@ -1,12 +1,31 @@
 import express from "express";
 import cors from "cors";
-const app = express();
+import NodeCache from "node-cache";
+const app = express()
 
 
 const cache = new NodeCache({ stdTTL: 100, checkperiod: 120 });
 
 app.use(cors());
 app.use(express.json());
+
+
+app.use((req, res, next) => {
+  if (req.method === "GET") {
+    const key = req.originalUrl;
+    const cachedResponse = cache.get(key);
+    if (cachedResponse) {
+      return res.json(cachedResponse);
+    } else {
+      res.sendResponse = res.json;
+      res.json = (body) => {
+        cache.set(key, body);
+        res.sendResponse(body);
+      };
+    }
+  }
+  next();
+});
 
 
 const iniciaServidor = async (porta) => {
