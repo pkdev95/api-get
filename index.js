@@ -3,7 +3,7 @@ import cors from "cors";
 const app = express()
 
 
-const cache = new NodeCache({ stdTTL: 100, checkperiod: 120 });
+
 
 app.use(cors());
 app.use(express.json());
