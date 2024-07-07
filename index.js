@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import NodeCache from "node-cache";
-const app = express()
+const app = express();
 
 
 const cache = new NodeCache({ stdTTL: 100, checkperiod: 120 });
